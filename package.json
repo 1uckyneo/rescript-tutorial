@@ -1,7 +1,6 @@
 {
   "name": "rescript-project-template",
   "version": "0.0.1",
-  "type": "module",
   "scripts": {
     "res:build": "rescript",
     "res:clean": "rescript clean",
