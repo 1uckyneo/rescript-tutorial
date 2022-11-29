@@ -27,6 +27,32 @@ function concat(a, b) {
 
 console.log("Hello ReScript");
 
+function add(a, b) {
+  return a + b | 0;
+}
+
+function minus(a, b) {
+  return a - b | 0;
+}
+
+var Int = {
+  add: add,
+  minus: minus
+};
+
+function add$1(a, b) {
+  return a + b;
+}
+
+function minus$1(a, b) {
+  return a - b;
+}
+
+var Float = {
+  add: add$1,
+  minus: minus$1
+};
+
 var s = "Hello ReScript";
 
 var c = /* 'a' */97;
@@ -53,5 +79,7 @@ export {
   addInt ,
   addFloat ,
   concat ,
+  Int ,
+  Float ,
 }
 /*  Not a pure module */

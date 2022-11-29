@@ -32,3 +32,15 @@ let concat = (a, b) => a ++ b
 Js.log(concat("Hello ", "ReScript"))
 
 // Module
+
+module Int = {
+  let add = (a, b) => a + b
+  let minus = (a, b) => a - b
+}
+
+module Float = {
+  let add = (a, b) => a +. b
+  let minus = (a, b) => a -. b
+}
+
+// Js.log(Index.invalid)
