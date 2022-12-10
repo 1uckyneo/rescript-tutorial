@@ -8,8 +8,8 @@ let greetings = {
   part1 ++ " " ++ part2
 }
 
-let value = 100
-let value = 100.
+// let value = 100
+// let value = 100.
 let value = "abc"
 
 let confession = name => {
