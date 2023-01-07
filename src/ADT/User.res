@@ -1,31 +1,22 @@
 // User.res
-let handleGuestName = (userInfo: Product.userInfo) => {
-  // 防御性编程，判断是否未登录
-  if !userInfo.isLogin {
-    Js.log(`guest name: ${userInfo.name}`)
-  }
+let handleGuestName = (userInfo: Sum.guestUserInfo) => {
+  Js.log(`guest name: ${userInfo.name}`)
 }
 
-let handleUserInfo = (userInfo: Product.userInfo) => {
-  // 防御性编程，判断是否登录
-  if userInfo.isLogin {
-    Js.log(`user name: ${userInfo.name}, user id: ${userInfo.id}`)
-  } else {
-    handleGuestName(userInfo)
-  }
+let handleUserInfo = (userInfo: Sum.loginUserInfo) => {
+  Js.log(`user name: ${userInfo.name}, user id: ${userInfo.id}`)
 }
 
-let handleResponse = (res: Product.jsonResponse) => {
-  switch res.error {
-  | Some(error) => Warn.handleError(error)
-  | None =>
-    switch res.data {
-    | Some(userInfo) => {
+let handleResponse = (res: Sum.jsonResponse) => {
+  switch res {
+  | Error({error}) => Js.log(error)
+  | Ok({data}) =>
+    switch data {
+    | Sum.GuestUserInfo(userInfo) => handleGuestName(userInfo)
+    | Sum.LoginUserInfo(userInfo) => {
         handleUserInfo(userInfo)
-        Email.handleEmail(userInfo)
+        Email.handleEmail(userInfo.emailInfo)
       }
-
-    | None => ()
     }
   }
 }
